@@ -1,0 +1,1 @@
+(Simulated OTA signature file)
