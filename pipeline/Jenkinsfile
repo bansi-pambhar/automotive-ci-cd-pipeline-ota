@@ -1,0 +1,23 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Build ECU Firmware') {
+      steps {
+        sh 'docker build -t ecu-brake firmware/ecu-brake'
+      }
+    }
+
+    stage('Security Scan') {
+      steps {
+        sh 'trivy image ecu-brake || true'
+      }
+    }
+
+    stage('OTA Signing') {
+      steps {
+        sh 'echo "Signing done by OEM"'
+      }
+    }
+  }
+}
